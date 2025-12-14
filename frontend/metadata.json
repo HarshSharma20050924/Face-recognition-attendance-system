@@ -1,0 +1,7 @@
+{
+  "name": "OmniSight Attendance",
+  "description": "Next-gen AI attendance system using Gemini 2.5 Vision for biometric verification. Features student management, analytics dashboard, and automated reporting.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

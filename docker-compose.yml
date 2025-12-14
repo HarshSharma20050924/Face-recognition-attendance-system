@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  backend:
+    image: python:3.9-slim
+    container_name: omnisight_backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app               # Live backend code
+      - ./backend_data:/app/data     # Persistent data
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    restart: always
+
+  frontend:
+    image: node:18-alpine
+    container_name: omnisight_frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app              # Live frontend code
+      - /app/node_modules            # Prevent overwriting node_modules
+    ports:
+      - "3000:3000"
+    command: npm run dev
+    depends_on:
+      - backend
+    restart: always
