@@ -32,8 +32,8 @@ Traditional attendance systems rely on manual entry or basic RFID. OmniSight int
 
 | Component | Demo | Credentials |
 |-----------|------|-------------|
-| **Admin Dashboard** | [Live Demo](https://omnisight-demo.vercel.app) | Face scan required Register your face to open admin panel |
-| **Attendance Kiosk** | [Kiosk Demo](https://omnisight-demo.vercel.app/kiosk) | Faculty login needed so Register faculty from the admin panel and try Kiosk mode |
+| **Admin Dashboard** | [Live Demo](https://face-recognition-attendance-system-true.vercel.app/) | Face scan required Register your face to open admin panel |
+| **Attendance Kiosk** | [Kiosk Demo](https://face-recognition-attendance-system-true.vercel.app/) | Faculty login needed so Register faculty from the admin panel and try Kiosk mode |
 
 > **Note:** Demo uses sample data. For full experience, deploy locally.
 
