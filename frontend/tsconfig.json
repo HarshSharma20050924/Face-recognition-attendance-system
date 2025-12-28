@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "vite.config.ts", "tailwind.config.js", "postcss.config.js"  ]
+, "vite.config.ts", "tailwind.config.js", "postcss.config.js", "../utils"  ]
 }

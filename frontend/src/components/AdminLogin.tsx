@@ -43,6 +43,18 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onClose }) =>
         return () => stopCamera();
     }, []);
 
+    // Re-attach stream when switching back to video mode (e.g. after capture or setup)
+    useEffect(() => {
+        if (!setupImage && videoRef.current && streamRef.current) {
+            // Check if source is already set to avoid flickering
+            if (videoRef.current.srcObject !== streamRef.current) {
+                videoRef.current.srcObject = streamRef.current;
+                videoRef.current.play().catch(e => console.log("Play error", e));
+            }
+            handleVideoPlay();
+        }
+    }, [setupImage]);
+
     const checkAdminStatus = async () => {
         try {
             const { registered } = await api.getAdminStatus();
@@ -72,6 +84,9 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onClose }) =>
                     videoRef.current?.play();
                     handleVideoPlay();
                 };
+            } else {
+                // If video ref is null (e.g. setup image mode), just store the stream
+                streamRef.current = stream;
             }
         } catch (e) {
             setFeedback("Camera Error");
@@ -208,7 +223,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onClose }) =>
         setStatus('SCANNING');
         setAutoCaptureProgress(0);
         setIsFaceGood(false);
-        handleVideoPlay();
+        // Video play is handled by useEffect when setupImage becomes null
     };
 
     const submitSetup = async () => {
@@ -222,10 +237,13 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onClose }) =>
             setFeedback("Admin Registered");
             setTimeout(() => {
                 setMode('LOGIN');
-                setSetupImage(null);
+                setSetupImage(null); // This triggers the useEffect to re-attach video
                 setSetupPassword('');
                 setStatus('SCANNING');
-                handleVideoPlay();
+                
+                // CRITICAL: Reset these to prevent "Hold Still" black screen
+                setIsFaceGood(false); 
+                setAutoCaptureProgress(0);
             }, 1500);
         } catch(e) {
             setFeedback("Setup Failed");
@@ -264,7 +282,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onClose }) =>
                                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
                                         <CheckCircle className="text-green-500 mb-2" size={48} />
                                         <span className="text-white font-bold">Face Captured</span>
-                                        <button onClick={() => {setSetupImage(null); setAutoCaptureProgress(0); handleVideoPlay();}} className="mt-2 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs text-white flex items-center gap-2">
+                                        <button onClick={() => {setSetupImage(null); setAutoCaptureProgress(0);}} className="mt-2 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs text-white flex items-center gap-2">
                                             <RefreshCw size={12}/> Retake
                                         </button>
                                     </div>
