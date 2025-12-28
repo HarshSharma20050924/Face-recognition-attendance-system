@@ -1,0 +1,82 @@
+.
+├── backend
+│   ├── data
+│   │   ├── attendance.db
+│   │   ├── cleanup_db.py
+│   │   ├── college.db
+│   │   ├── faculty_images
+│   │   │   └── ADMIN.jpg
+│   │   └── images
+│   ├── Dockerfile
+│   ├── face_recognition_models_backup
+│   │   ├── build
+│   │   │   ├── bdist.linux-x86_64
+│   │   │   └── lib
+│   │   │       └── face_recognition_models
+│   │   │           ├── __init__.py
+│   │   │           └── models
+│   │   │               ├── dlib_face_recognition_resnet_model_v1.dat
+│   │   │               ├── mmod_human_face_detector.dat
+│   │   │               ├── shape_predictor_5_face_landmarks.dat
+│   │   │               └── shape_predictor_68_face_landmarks.dat
+│   │   ├── face_recognition_models
+│   │   │   ├── __init__.py
+│   │   │   └── models
+│   │   │       ├── dlib_face_recognition_resnet_model_v1.dat
+│   │   │       ├── mmod_human_face_detector.dat
+│   │   │       ├── shape_predictor_5_face_landmarks.dat
+│   │   │       └── shape_predictor_68_face_landmarks.dat
+│   │   ├── face_recognition_models.egg-info
+│   │   │   ├── dependency_links.txt
+│   │   │   ├── not-zip-safe
+│   │   │   ├── PKG-INFO
+│   │   │   ├── SOURCES.txt
+│   │   │   └── top_level.txt
+│   │   ├── LICENSE
+│   │   ├── Makefile
+│   │   ├── MANIFEST.in
+│   │   ├── README.rst
+│   │   ├── requirements_dev.txt
+│   │   ├── setup.cfg
+│   │   └── setup.py
+│   ├── main.py
+│   ├── master.zip
+│   └── requirements.txt
+├── docker-compose.yml
+├── frontend
+│   ├── Dockerfile
+│   ├── metadata.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   ├── index.html
+│   │   └── logo.png
+│   ├── src
+│   │   ├── App.tsx
+│   │   ├── components
+│   │   │   ├── AdminLogin.tsx
+│   │   │   ├── AttendanceKiosk.tsx
+│   │   │   ├── Dashboard.tsx
+│   │   │   ├── FacultyAuth.tsx
+│   │   │   ├── FacultyManager.tsx
+│   │   │   ├── Reports.tsx
+│   │   │   ├── SessionReport.tsx
+│   │   │   ├── StudentList.tsx
+│   │   │   ├── SubjectSelect.tsx
+│   │   │   ├── TimetableManager.tsx
+│   │   │   └── WelcomeScreen.tsx
+│   │   ├── data
+│   │   │   └── timetable.ts
+│   │   ├── index.css
+│   │   ├── index.tsx
+│   │   ├── services
+│   │   │   └── api.ts
+│   │   └── types.ts
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── photo_6210537695613142372_y.jpg
+├── README.md
+└── structure.txt
+
+20 directories, 60 files

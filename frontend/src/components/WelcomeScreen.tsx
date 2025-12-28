@@ -10,6 +10,11 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
     <div className="h-full flex flex-col items-center justify-between bg-white text-slate-900 p-8 animate-in fade-in duration-700">
       <div className="flex-1 flex flex-col items-center justify-center space-y-12">
         <div className="flex flex-col items-center text-center space-y-6">
+          {/* Added the new line here */}
+          <p className="text-xl md:text-3xl font-sans font-extrabold text-red-600 tracking-wider uppercase">
+            Face Recognition Attendance System
+          </p>
+
           <div className="w-40 h-40 md:w-56 md:h-56 relative flex items-center justify-center">
              <img 
                src="/logo.png" 
