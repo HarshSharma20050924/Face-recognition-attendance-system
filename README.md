@@ -38,7 +38,7 @@ Traditional attendance systems rely on manual entry or basic RFID. OmniSight int
 
 > **Note:** Demo uses sample data. For full experience, deploy locally.
 
-## ✨ Key Features
+## Key Features
 
 ### 🔐 **Military-Grade Security**
 ```mermaid
