@@ -1,4 +1,4 @@
-# 👁️ Face Recognition Attendance System
+#  Face Recognition Attendance System
 
 ![OmniSight Banner](https://img.shields.io/badge/OmniSight-Next--Gen%20AI%20Attendance-blueviolet)
 ![Status](https://img.shields.io/badge/Status-Active-success)
@@ -10,13 +10,13 @@
 **Hybrid AI Biometric Attendance & Analytics Platform**  
 OmniSight delivers enterprise-grade facial recognition attendance with a perfect blend of client-side responsiveness and server-side accuracy, eliminating proxy attendance and manual tracking.
 
-## 🎯 What Makes OmniSight Unique?
+##  What Makes OmniSight Unique?
 
 Traditional attendance systems rely on manual entry or basic RFID. OmniSight introduces **AI-powered facial recognition with dual-layer security**:
-- ✅ **Fraud-proof verification** with liveness detection
-- ✅ **Zero physical contact** needed
-- ✅ **Real-time analytics** for decision making
-- ✅ **Role-based biometric security** at every step
+-  **Fraud-proof verification** with liveness detection
+-  **Zero physical contact** needed
+-  **Real-time analytics** for decision making
+-  **Role-based biometric security** at every step
 
 ### 📊 Market Problem vs Our Solution
 
@@ -28,7 +28,7 @@ Traditional attendance systems rely on manual entry or basic RFID. OmniSight int
 | **Inflexible** | Hardware-dependent | Browser-based, works anywhere |
 | **Security Gaps** | Simple passwords | Biometric + multi-factor auth |
 
-## 🚀 Live Demo
+##  Live Demo
 
 | Component | Demo | Credentials |
 |-----------|------|-------------|
@@ -97,7 +97,7 @@ const captureLogic = {
 | **Student Attendance %** | Progress bars & rankings | Early intervention for at-risk |
 | **Faculty Performance** | Session completion rates | Staff performance tracking |
 
-### 👨‍🏫 **Faculty Workflow**
+###  **Faculty Workflow**
 
 ```mermaid
 sequenceDiagram
@@ -255,10 +255,7 @@ backend_stack = {
 
 ### **Infrastructure**
 - **Containerization**: Docker & Docker Compose
-- **Orchestration**: Kubernetes ready manifests
 - **CI/CD**: GitHub Actions with multi-stage builds
-- **Monitoring**: Prometheus + Grafana dashboard
-- **Logging**: Structured JSON logs with ELK stack
 
 ## 📁 Project Structure
 
@@ -416,7 +413,7 @@ cd frontend
 npm install
 
 # Start development server
-npm run dev
+npm start
 ```
 
 #### Initialize the System
@@ -454,39 +451,16 @@ DB_USER=postgres
 DB_PASSWORD=postgres
 
 # ========================
-# REDIS
-# ========================
-REDIS_URL=redis://redis:6379
-REDIS_HOST=redis
-REDIS_PORT=6379
-
-# ========================
-# FACE RECOGNITION
-# ========================
-FACE_RECOGNITION_TOLERANCE=0.6
-FACE_ENCODING_MODEL=large
-FACE_DETECTION_MODEL=cnn
-
-# ========================
-# SECURITY
-# ========================
-JWT_SECRET_KEY=your-jwt-secret-key
-JWT_ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-REFRESH_TOKEN_EXPIRE_DAYS=7
-
-# ========================
 # STORAGE
 # ========================
 STORAGE_TYPE=local  # local, s3, minio
-UPLOAD_DIR=./uploads
+UPLOAD_DIR=./Data
 MAX_UPLOAD_SIZE=10485760  # 10MB
 
 # ========================
 # ADMIN DEFAULTS
 # ========================
-DEFAULT_ADMIN_EMAIL=admin@omnisight.edu
-DEFAULT_ADMIN_PASSWORD=ChangeMe123!
+DEFAULT_ADMIN_PASSWORD=admin123
 ```
 
 
@@ -495,18 +469,36 @@ DEFAULT_ADMIN_PASSWORD=ChangeMe123!
 
 ### Core Endpoints
 
+## Base URL
+```
+http://localhost:8000
+```
+
+## Authentication
+No API key required. Endpoints are publicly accessible.
+
+## API Endpoints
+
 | Method | Endpoint | Description | Authentication |
 |--------|----------|-------------|----------------|
-| `POST` | `/api/v1/auth/login` | Faculty face login | Public |
-| `POST` | `/api/v1/auth/admin` | Admin login (face + password) | Public |
-| `POST` | `/api/v1/attendance/identify` | Identify student from image | Faculty token |
-| `GET` | `/api/v1/attendance/sessions` | List all sessions | Admin token |
-| `POST` | `/api/v1/attendance/sessions` | Start new session | Faculty token |
-| `PUT` | `/api/v1/attendance/sessions/{id}/end` | End session | Session owner only |
-| `GET` | `/api/v1/students` | List all students | Admin/Faculty token |
-| `POST` | `/api/v1/students` | Register new student | Admin token |
-| `GET` | `/api/v1/analytics/daily` | Daily attendance stats | Admin token |
-| `GET` | `/api/v1/reports/session/{id}` | Session report | Faculty/Admin token |
+| **GET** | `/admin/status` | Check if admin is registered | Public |
+| **POST** | `/admin/setup` | Register admin (first-time setup) | Public |
+| **POST** | `/admin/login` | Admin face login | Public |
+| **GET** | `/students` | Get all students | Public |
+| **POST** | `/students` | Add new student | Public |
+| **PUT** | `/students/{id}` | Update student details | Public |
+| **DELETE** | `/students/{id}` | Delete student | Public |
+| **GET** | `/faculty` | Get all faculty members | Public |
+| **POST** | `/faculty` | Add new faculty | Public |
+| **PUT** | `/faculty` | Update faculty details | Public |
+| **DELETE** | `/faculty/{id}` | Delete faculty | Public |
+| **GET** | `/subjects` | Get all subjects | Public |
+| **POST** | `/subjects` | Add new subject | Public |
+| **DELETE** | `/subjects/{abbr}` | Delete subject | Public |
+| **POST** | `/identify` | Identify student & mark attendance | Public |
+| **GET** | `/attendance` | Get attendance records | Public |
+| **PUT** | `/attendance/{id}` | Update attendance status | Public |
+
 
 ### WebSocket Events
 
@@ -546,28 +538,6 @@ docker-compose -f docker-compose.prod.yml up --scale api=3 -d
 # View production logs
 docker-compose -f docker-compose.prod.yml logs -f
 ```
-
-### Kubernetes Deployment
-
-```bash
-# Apply Kubernetes manifests
-kubectl apply -f k8s/namespace.yaml
-kubectl apply -f k8s/configmap.yaml
-kubectl apply -f k8s/secrets.yaml
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-kubectl apply -f k8s/ingress.yaml
-
-# Check status
-kubectl get all -n omnisight
-```
-
-### Cloud Deployment Guides
-
-- **AWS**: Use ECS/EKS with RDS and ElastiCache
-- **GCP**: Google Kubernetes Engine with Cloud SQL
-- **Azure**: AKS with Azure Database for PostgreSQL
-- **DigitalOcean**: Managed Kubernetes with Spaces
 
 ## 📈 Performance Metrics
 
@@ -670,16 +640,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support & Contact
 
-- **Documentation**: [docs.omnisight.ai](https://docs.omnisight.ai)
-- **Issue Tracker**: [GitHub Issues](https://github.com/yourusername/omnisight-attendance/issues)
-- **Discord Community**: [Join our Discord](https://discord.gg/omnisight)
-- **Email**: support@omnisight.ai
+- **Issue Tracker**: [GitHub Issues](https://github.com/HarshSharma20050924/Face-recognition-attendance-system/issues)
+- **Email**: harsh20050924@gmail.com
 
-## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/omnisight-attendance&type=Date)](https://star-history.com/#yourusername/omnisight-attendance&Date)
-
----
 
 **Built with ❤️ for educational institutions worldwide.**
 
