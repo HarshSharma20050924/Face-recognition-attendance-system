@@ -58,7 +58,7 @@ graph LR
 
 | Security Feature | Technology | Benefit |
 |-----------------|------------|---------|
-| **Dual-Layer AI** | face-api.js (client) + Dlib (server) | Balance speed & accuracy |
+| **Dual-Layer AI** | face-api.js (client) + face_recognition + dlib | Balance speed & accuracy |
 | **Anti-Spoofing** | Liveness detection with quality checks | Prevents photo/video replay attacks |
 |**Session Locking**| Biometric session termination | Only originating faculty can end class |
 | **Role-Based Access** | Face ID + Password for admins | Granular permission control |
